@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>個案 B 兩週</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+/* Layout: one narrow reading column for a phone held in one hand. The page reads like a class handout:
+   header strip, narrative, what the ledger showed, the two options, an exhibit table, then the discussion sheet.
+   Ledger-green paper with red ink, the colour of a deficit. */
+:root{
+  --bg:#F1F4EF; --surface:#FFFFFF; --ink:#17211B; --muted:#5A675E; --rule:#D2DAD2;
+  --accent:#B4261C; --on-accent:#FFFFFF;
+  --ledger:#E6EEE3; --ledger-rule:#C2D1C0; --ledger-ink:#17211B;
+  --font-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --font-body:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1512; --surface:#18211C; --ink:#E7EDE8; --muted:#9BA8A0; --rule:#2A372F;
+    --accent:#FF8E80; --on-accent:#1A0B09;
+    --ledger:#17221B; --ledger-rule:#2F4034; --ledger-ink:#E7EDE8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1512; --surface:#18211C; --ink:#E7EDE8; --muted:#9BA8A0; --rule:#2A372F;
+  --accent:#FF8E80; --on-accent:#1A0B09;
+  --ledger:#17221B; --ledger-rule:#2F4034; --ledger-ink:#E7EDE8;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.85;-webkit-text-size-adjust:100%}
+p{margin:0}
+
+.progress{position:fixed;inset:0 0 auto 0;padding-top:env(safe-area-inset-top,0px);z-index:10;pointer-events:none}
+.progress i{display:block;height:3px;width:0;background:var(--accent)}
+
+.page{max-width:40rem;margin-inline:auto;padding-inline:20px;padding-block:28px 56px;display:flex;flex-direction:column;gap:28px}
+
+.strip{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.8125rem;color:var(--muted);border-bottom:1px solid var(--ink);padding-bottom:10px;letter-spacing:.04em}
+.tag{background:var(--ink);color:var(--bg);padding:2px 10px;font-weight:600;letter-spacing:.08em}
+h1{font-family:var(--font-display);font-weight:900;font-size:clamp(3rem,16vw,4.6rem);line-height:1.1;margin:20px 0 0;letter-spacing:.06em}
+.deck{font-size:1.125rem;line-height:1.7;margin-top:14px}
+.disclaimer{font-size:.8125rem;color:var(--muted);margin-top:14px}
+
+.sec{display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--rule);padding-top:22px}
+h2{font-family:var(--font-display);font-weight:700;font-size:1.3rem;line-height:1.4;margin:0;text-wrap:balance}
+.sec ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+
+.call{margin:0;background:var(--surface);border:1px solid var(--rule);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.call figcaption{font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--accent)}
+.call p{font-size:1.125rem;line-height:1.7}
+
+.ledger{background:var(--ledger);color:var(--ledger-ink);padding:4px 16px;border-top:3px double var(--ledger-rule);border-bottom:3px double var(--ledger-rule)}
+.sec .ledger ul{list-style:none;padding:0;gap:0}
+.ledger li{padding:11px 0;border-bottom:1px solid var(--ledger-rule);line-height:1.7}
+.ledger li:last-child{border-bottom:0}
+.total{font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.5}
+
+.options{display:flex;flex-direction:column;gap:14px}
+.option{background:var(--surface);border:1px solid var(--rule);padding:16px;display:flex;flex-direction:column;gap:6px}
+.option h3{margin:0;font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.4}
+.label{font-size:.75rem;font-weight:600;letter-spacing:.12em;color:var(--accent)}
+
+.closing{font-family:var(--font-display);font-weight:900;font-size:1.5rem;line-height:1.5;color:var(--accent);text-wrap:balance}
+
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9375rem;line-height:1.6;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:500;color:var(--muted);width:40%;padding-right:12px}
+tr:first-child th,tr:first-child td{border-top:2px solid var(--ink)}
+
+.discuss{background:var(--ink);color:var(--bg);padding:22px 20px;display:flex;flex-direction:column;gap:12px}
+.discuss .label{color:inherit;opacity:.7}
+.discuss ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:10px}
+.discuss .how{font-size:.8125rem;opacity:.75}
+
+footer{font-size:.75rem;color:var(--muted);letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<main class="page">
+  <header>
+    <div class="strip"><span class="tag">個案 B</span><span>閱讀時間約 5 分鐘</span></div>
+    <h1>兩週</h1>
+    <p class="deck">一通銀行來電之後，創投合夥人只剩十四天決定：認賠，還是跳下去。</p>
+    <p class="disclaimer">本個案改編自真實事件，人名、公司名與部分細節已更動，僅供課堂討論。</p>
+  </header>
+
+  <section class="sec">
+    <h2>那通電話</h2>
+    <p>農曆年剛過，開工後的第二個星期，林哲安的手機響了。來電的是銀行經理，語氣客氣，內容卻讓他愣住：</p>
+    <figure class="call">
+      <figcaption>銀行經理來電</figcaption>
+      <p>林先生，禾澄循環股份有限公司的貸款已經兩個月沒繳了。兩週內再不處理，我們只能啟動催收。</p>
+    </figure>
+    <p>哲安是一家創投的合夥人，也是禾澄循環的董事。這筆貸款，當初是因為他的引薦，銀行才願意放款。</p>
+  </section>
+
+  <section class="sec">
+    <h2>五年前的好故事</h2>
+    <p>五年前，哲安投了 1,000 萬，占股約 8%。當時的故事很漂亮：</p>
+    <ul>
+      <li>禾澄循環拿到一份類似政府標案的長期合約，負責處理公有批發市場每天產生的生廚餘，也就是菜葉、果皮這類沒煮過的廚餘。市場天天開，廚餘天天有，收入看起來很穩。</li>
+      <li>總經理保證，處理量會做到每天 100 噸以上，處理費還會年年上漲。</li>
+      <li>股東名單很亮眼，每一位都是有實力的企業主。</li>
+      <li>總經理說這一輪的錢夠用，兩年後工廠就能開工。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>五年來的理由</h2>
+    <p>兩年過去，工廠沒有開工。第三年、第四年也沒有。每次問起，總經理都有理由：政府審查延誤、證照卡關、工程還要再等一下。每個理由聽起來都合理。哲安手上還有其他案子要顧，也就沒有追到底。</p>
+  </section>
+
+  <section class="sec">
+    <h2>打開帳本之後</h2>
+    <p>掛上電話，哲安花了幾天，把公司的帳和合約全部調出來。他看到的是：</p>
+    <div class="ledger">
+      <ul>
+        <li>帳上幾乎沒有現金。</li>
+        <li>工廠只蓋了六成，蓋完至少還要 5,000 萬。</li>
+        <li>銀行貸款還有 3,000 萬沒還，公司另外欠股東 3,000 萬。過去幾個月的貸款，是一位股東被說服後自己掏錢墊的，現在他也撐不下去了。</li>
+        <li>公司沒有員工，只有總經理一個人，卻按月付費給好幾位顧問，找不到對應的工作成果。</li>
+        <li>工程延宕的這幾年，光是利息和土地租金就花掉幾千萬。</li>
+        <li>當初的故事站不住腳。市場實際能收到的生廚餘，遠遠不到每天 100 噸；處理費的行情很低，也看不到上漲的跡象。就算把廠蓋完，照原本的做法也很難賺錢。</li>
+      </ul>
+    </div>
+    <p class="total">八位股東前後投進了 1 億 3,000 萬。</p>
+    <p>那幾天的新聞還在談另一件事：去年十月台灣出現首例非洲豬瘟，政府宣布 2027 年起全面禁止用廚餘養豬，餐廳和團膳業者正為剩菜剩飯沒地方去而發愁。哲安滑過這則新聞，沒有多想。</p>
+  </section>
+
+  <section class="sec">
+    <h2>兩個選項</h2>
+    <div class="options">
+      <div class="option">
+        <span class="label">選項一</span>
+        <h3>認賠</h3>
+        <p>1,000 萬歸零。其他股東不是哲安找來的，他對他們沒有義務。創投本來就是投十個案子會倒好幾個，停損是基本功。但銀行是因為他才放款的，他又是董事，這件事會跟著他的名字很久。</p>
+      </div>
+      <div class="option">
+        <span class="label">選項二</span>
+        <h3>跳下去</h3>
+        <p>接下總經理，先在兩週內找到錢擋住銀行，再找至少 5,000 萬把廠蓋完，同時還要想出一個真的能賺錢的做法。這等於在最差的開局重新創業一次，而他對廚餘處理這一行並不熟。</p>
+      </div>
+    </div>
+    <p>幾位核心股東打電話來。他們投的錢比哲安多得多，語氣很猶豫，意思卻很清楚：希望他出面。哲安也明白，如果真能把公司救回來，這群人會是他往後最堅強的後盾。如果救不回來，他賠掉的就不只是 1,000 萬，還有時間、名聲和其他案子。</p>
+    <p class="closing">距離銀行的期限，還有十四天。</p>
+  </section>
+
+  <section class="sec">
+    <span class="label">附表</span>
+    <h2>公司現況一覽</h2>
+    <div class="scroll">
+      <table>
+        <tbody>
+          <tr><th scope="row">股東累計投入</th><td>1 億 3,000 萬（8 位股東）</td></tr>
+          <tr><th scope="row">哲安的投資</th><td>1,000 萬（約 8%）</td></tr>
+          <tr><th scope="row">帳上現金</th><td>接近 0</td></tr>
+          <tr><th scope="row">銀行貸款餘額</th><td>3,000 萬（已兩個月未繳）</td></tr>
+          <tr><th scope="row">欠股東的借款</th><td>3,000 萬</td></tr>
+          <tr><th scope="row">工程進度</th><td>約 60%</td></tr>
+          <tr><th scope="row">完工資金缺口</th><td>至少 5,000 萬</td></tr>
+          <tr><th scope="row">員工</th><td>0（只有總經理一人）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="discuss">
+    <span class="label">小組討論</span>
+    <h2>如果你是哲安</h2>
+    <ol>
+      <li>你選認賠，還是跳下去？最關鍵的理由是什麼？</li>
+      <li>如果跳下去，這十四天你最先做的三件事是什麼？</li>
+    </ol>
+    <p class="how">討論後每組派一位口頭發表。</p>
+  </section>
+
+  <footer>明志科技大學專題演講｜創投視角下的創業第一課</footer>
+</main>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar');
+  function update(){
+    var d=document.documentElement, max=d.scrollHeight-window.innerHeight;
+    bar.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+'%';
+  }
+  addEventListener('scroll',update,{passive:true});
+  addEventListener('resize',update);
+  update();
+})();
+</script>
+</body>
+</html>
